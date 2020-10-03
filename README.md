@@ -2,11 +2,17 @@
 
 ## Table Of Content
  1.Overview
+ 
  2.Application 
+ 
  3.Deep Learning
+ 
      a)Face Mask Detection
+     
      b)Social Distancing
+     
      c)Temperature Detection using Thermal Integration
+     
  4.
  
  
