@@ -38,4 +38,7 @@ This is our UI of the application->
   This page is for the live interface of the camera.
   
   <a href="https://ibb.co/YTG33XS"><img width="225px" src="https://i.ibb.co/vv8HHhW/Screenshot-20201004-014827.jpg" alt="Screenshot-20201004-014827" border="0"></a>
+  
+  
+  <a href="https://imgbb.com/"><img width="400px" src="https://i.ibb.co/x6jzwR5/ezgif-com-gif-maker.gif" alt="ezgif-com-gif-maker" border="0"></a>
 
