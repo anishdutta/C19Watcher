@@ -27,11 +27,11 @@ This project is a starting point for a Flutter application.
 
 This is our UI of the application->
 
-  <a href="https://ibb.co/bdbKtZ1"><img src="https://i.ibb.co/s3WV7Gj/Screenshot-20201004-014746.jpg" alt="Screenshot-20201004-014746" border="0"></a>
+  <a href="https://ibb.co/bdbKtZ1"><img width="225px" src="https://i.ibb.co/s3WV7Gj/Screenshot-20201004-014746.jpg" alt="Screenshot-20201004-014746" border="0"></a>
   
   This is the login Page.
   
-  <a href="https://ibb.co/3RNjp43"><img src="https://i.ibb.co/5K8SrG0/Screenshot-20201004-014819.jpg" alt="Screenshot-20201004-014819" border="0"></a>
+  <a href="https://ibb.co/3RNjp43"><img width="225px" src="https://i.ibb.co/5K8SrG0/Screenshot-20201004-014819.jpg" alt="Screenshot-20201004-014819" border="0"></a>
   
   This is our home Page.
 
