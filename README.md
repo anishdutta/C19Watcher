@@ -41,4 +41,9 @@ This is our UI of the application->
   
   
   <a href="https://imgbb.com/"><img width="400px" src="https://i.ibb.co/x6jzwR5/ezgif-com-gif-maker.gif" alt="ezgif-com-gif-maker" border="0"></a>
+  
+  
+  <a href="https://imgbb.com/"><img width="225px" src="https://i.ibb.co/sCZpZsk/face1.jpg" alt="face1" border="0"></a>
+  
+  <a href="https://imgbb.com/"><img width="225px" src="https://i.ibb.co/6sTsW3C/face2.jpg" alt="face2" border="0"></a>
 
