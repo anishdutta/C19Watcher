@@ -67,22 +67,23 @@ class _SigninState extends State<Signin> {
                 child: Stack(
                   children: <Widget>[
                     Container(
+
                       padding: EdgeInsets.fromLTRB(15.0, 110.0, 0.0, 0.0),
-                      child: Text('Hello',
-                          style: TextStyle(
-                              fontSize: 80.0, fontWeight: FontWeight.bold)),
+                      child: Image.asset('assets/without background.png',
+                      width: 150,),
+
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(16.0, 175.0, 0.0, 0.0),
-                      child: Text('There',
+                      child: Text('C19 Watcher',
                           style: TextStyle(
-                              fontSize: 80.0, fontWeight: FontWeight.bold)),
+                              fontSize: 50.0, fontWeight: FontWeight.bold)),
                     ),
                     Container(
                       padding: EdgeInsets.fromLTRB(220.0, 175.0, 0.0, 0.0),
                       child: Text('.',
                           style: TextStyle(
-                              fontSize: 80.0,
+                              fontSize: 50.0,
                               fontWeight: FontWeight.bold,
                               color: Colors.green)),
                     )

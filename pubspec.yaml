@@ -25,6 +25,12 @@ dependencies:
   firebase_auth: ^0.15.4
   platform_alert_dialog: ^1.0.0+2
   modal_progress_hud: ^0.1.3
+  getwidget: ^1.1.3
+  carousel_slider: ^1.3.0
+  contacts_service: ^0.3.10
+  permission_handler: ^5.0.1+1
+
+
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +53,15 @@ flutter:
     - assets/facebook.png
     - assets/wiht background.png
     - assets/without background.png
+    - assets/Group 1905.png
+    - assets/Group 1924.png
+    - assets/Group 1925.png
+    - assets/Group 1926.png
+    - assets/group-of-people.png
+    - assets/blog.jpg
+    - assets/Group 1933.png
+    - assets/Group 1932.png
+    - assets/Group 1931.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

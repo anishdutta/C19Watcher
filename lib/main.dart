@@ -2,13 +2,25 @@ import 'package:flutter/material.dart';
 import 'signin.dart';
 import 'signup.dart';
 import 'ui/Dashboard.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'ui/Profile.dart';
+import 'ui/LiveWatcher.dart';
+import 'ui/Search.dart';
+import 'ui/Details.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final _auth = FirebaseAuth.instance;
+
+  Future<FirebaseUser> getCurrentUser() async {
+    FirebaseUser currentUser;
+    currentUser = await _auth.currentUser();
+    return currentUser;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,10 +35,22 @@ class MyApp extends StatelessWidget {
       routes: {
             Signin.id : (context) => Signin(),
         SignupPage.id: (context) => SignupPage(),
-        HomePage.id: (context) => HomePage()
-
+        HomePage.id: (context) => HomePage(),
+        ProfilePage.id: (context) => ProfilePage(),
+        LiveWatcher.id: (context) => LiveWatcher(),
+        MySearchPage.id: (context) => MySearchPage(),
+        Details.id: (context) => Details()
       },
-      home: Signin(),
+      home: FutureBuilder(
+        future: getCurrentUser(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return HomePage();
+          } else {
+            return Signin();
+          }
+        },
+      ),
     );
   }
 }

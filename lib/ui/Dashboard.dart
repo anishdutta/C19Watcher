@@ -1,5 +1,10 @@
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'Profile.dart';
+import 'package:page_transition/page_transition.dart';
+import 'LiveWatcher.dart';
+import 'Details.dart';
+
 
 class HomePage extends StatefulWidget {
   static String id = 'dash';
@@ -10,141 +15,328 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final double _borderRadius = 24;
+  int currentTab = 0; // to keep track of active tab index
+  final List<Widget> screens = [
+    HomePage(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
+  ]; // to store nested tabs
+  final PageStorageBucket bucket = PageStorageBucket();
+  Widget currentScreen = HomePage(); // Our first view in viewport
 
-  var items = [
-    PlaceInfo('Dubai Mall Food Court', Color(0xff6DC8F3), Color(0xff73A1F9),
-        4.4, 'Dubai · In The Dubai Mall', 'Cosy · Casual · Good for kids'),
-    PlaceInfo('Hamriyah Food Court', Color(0xffFFB157), Color(0xffFFA057), 3.7,
-        'Sharjah', 'All you can eat · Casual · Groups'),
-    PlaceInfo('Gate of Food Court', Color(0xffFF5B95), Color(0xffF8556D), 4.5,
-        'Dubai · Near Dubai Aquarium', 'Casual · Groups'),
-    PlaceInfo('Express Food Court', Color(0xffD76EF5), Color(0xff8F7AFE), 4.1,
-        'Dubai', 'Casual · Good for kids · Delivery'),
-    PlaceInfo('BurJuman Food Court', Color(0xff42E695), Color(0xff3BB2B8), 4.2,
-        'Dubai · In BurJuman', '...'),
-  ];
+  //
+  // var items = [
+  //   PlaceInfo('Dubai Mall Food Court', Color(0xff6DC8F3), Color(0xff73A1F9),
+  //       4.4, 'Dubai · In The Dubai Mall', 'Cosy · Casual · Good for kids'),
+  //   PlaceInfo('Hamriyah Food Court', Color(0xffFFB157), Color(0xffFFA057), 3.7,
+  //       'Sharjah', 'All you can eat · Casual · Groups'),
+  //   PlaceInfo('Gate of Food Court', Color(0xffFF5B95), Color(0xffF8556D), 4.5,
+  //       'Dubai · Near Dubai Aquarium', 'Casual · Groups'),
+  //   PlaceInfo('Express Food Court', Color(0xffD76EF5), Color(0xff8F7AFE), 4.1,
+  //       'Dubai', 'Casual · Good for kids · Delivery'),
+  //   PlaceInfo('BurJuman Food Court', Color(0xff42E695), Color(0xff3BB2B8), 4.2,
+  //       'Dubai · In BurJuman', '...'),
+  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Foody'),
+
+      elevation: 4,
+      backgroundColor: Colors.white,
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/without background.png',
+              height: 80,
+              width: 80,
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            Text('Home', style: TextStyle(
+                color: Colors.black
+            ),),
+          ],
+        ),
+      actions: <Widget>[
+        GestureDetector(
+          onTap: (){
+            Navigator.pushReplacementNamed(context, 'LiveWatcher');
+
+
+          },
+          child: Image.asset('assets/group-of-people.png'),
+        ),
+
+        SizedBox(
+          width: 5,
+        ),
+
+      ],
+    ),
+      floatingActionButton: FloatingActionButton(
+        child: Image.asset('assets/Group 1926.png'),
+        onPressed: () {},
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Stack(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: Container(
+          height: 60,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(_borderRadius),
-                      gradient: LinearGradient(colors: [
-                        items[index].startColor,
-                        items[index].endColor
-                      ], begin: Alignment.topLeft, end: Alignment.bottomRight),
-                      boxShadow: [
-                        BoxShadow(
-                          color: items[index].endColor,
-                          blurRadius: 12,
-                          offset: Offset(0, 6),
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        currentScreen =
+                            HomePage(); // if user taps on this dashboard tab will be active
+                        currentTab = 0;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.home,
+                          color: currentTab == 0 ? Colors.blue : Colors.grey,
+                        ),
+                        Text(
+                          'Home',
+                          style: TextStyle(
+                            color: currentTab == 0 ? Colors.blue : Colors.grey,
+                          ),
                         ),
                       ],
                     ),
                   ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    top: 0,
-                    child: CustomPaint(
-                      size: Size(100, 150),
-                      painter: CustomCardShapePainter(_borderRadius,
-                          items[index].startColor, items[index].endColor),
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        Navigator.pushReplacementNamed(context, 'search');
+
+                        currentScreen =
+                            HomePage(); // if user taps on this dashboard tab will be active
+                        currentTab = 1;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.search,
+                          color: currentTab == 1 ? Colors.blue : Colors.grey,
+                        ),
+                        Text(
+                          'Search',
+                          style: TextStyle(
+                            color: currentTab == 1 ? Colors.blue : Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+
+              // Right Tab bar icons
+
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        Navigator.pushReplacementNamed(context, 'LiveWatcher');
+
+                        currentScreen =
+                            HomePage(); // if user taps on this dashboard tab will be active
+                        currentTab = 2;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.videocam,
+                          color: currentTab == 2 ? Colors.blue : Colors.grey,
+                        ),
+                        Text(
+                          'Live',
+                          style: TextStyle(
+                            color: currentTab == 2 ? Colors.blue : Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  Positioned.fill(
-                    child: Row(
+                  MaterialButton(
+                    minWidth: 40,
+                    onPressed: () {
+                      setState(() {
+                        Navigator.pushReplacementNamed(context, 'profile');
+                        currentScreen =
+                            ProfilePage(); // if user taps on this dashboard tab will be active
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Expanded(
-                          child: Image.asset(
-                            'assets/icon.png',
-                            height: 64,
-                            width: 64,
-                          ),
-                          flex: 2,
+                        Icon(
+                          Icons.person,
+                          color: currentTab == 3 ? Colors.blue : Colors.grey,
                         ),
-                        Expanded(
-                          flex: 4,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                items[index].name,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Avenir',
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              Text(
-                                items[index].category,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Avenir',
+                        Text(
+                          'Profile',
+                          style: TextStyle(
+                            color: currentTab == 3 ? Colors.blue : Colors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              )
+
+            ],
+          ),
+        ),
+      ),
+
+
+      body: ListView.builder(
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: (){
+              Navigator.pushReplacementNamed(context, 'details');
+            },
+            child: Center(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Stack(
+                  children: <Widget>[
+                    Container(
+                      height: 100,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(_borderRadius),
+                        gradient: LinearGradient(colors: [
+                          Color(0XffD2FCEF),
+                          Color(0XffD2FCEF)
+                          // Color(0Xff06BF86)
+                        ], begin: Alignment.topLeft, end: Alignment.bottomRight),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.green,
+                            blurRadius: 12,
+                            offset: Offset(0, 6),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      right: 0,
+                      bottom: 0,
+                      top: 0,
+                      child: CustomPaint(
+                        size: Size(100, 150),
+                        painter: CustomCardShapePainter(_borderRadius,
+                            Color(0Xff06BF86), Color(0XffD2FCEF)),
+                      ),
+                    ),
+                    Positioned.fill(
+                      child: Row(
+
+                        children: <Widget>[
+                          Expanded(
+
+                            child: Image.asset(
+                              'assets/wiht background.png',
+                              height: 64,
+                              width: 64,
+                            ),
+                            flex: 2,
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            flex: 4,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Text(
+                                  "Elon Musk",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontFamily: 'Avenir',
+                                      fontWeight: FontWeight.w700),
                                 ),
-                              ),
-                              SizedBox(height: 16),
-                              Row(
-                                children: <Widget>[
-                                  Icon(
-                                    Icons.location_on,
-                                    color: Colors.white,
-                                    size: 16,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Flexible(
-                                    child: Text(
-                                      items[index].location,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Avenir',
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Icon(
+                                      Icons.location_on,
+                                      color: Colors.red,
+                                      size: 16,
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Flexible(
+                                      child: Text(
+                                        "location",
+                                        style: TextStyle(
+                                          color: Colors.blueGrey,
+                                          fontFamily: 'Avenir',
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+
+                              ],
+                            ),
                           ),
-                        ),
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Text(
-                                items[index].rating.toString(),
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Avenir',
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w700),
-                              ),
-                              // RatingBar(rating: items[index].rating),
-                            ],
+                          Expanded(
+                            flex: 4,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Image.asset('assets/Group 1905.png'),
+                                SizedBox(width: 10),
+                                Image.asset('assets/Group 1925.png'),
+                                SizedBox(width: 10),
+
+                                Image.asset('assets/Group 1925.png'),
+
+                                // RatingBar(rating: items[index].rating),
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );
+
         },
       ),
     );
