@@ -28,7 +28,7 @@ This project is a starting point for a Flutter application.
 This is our UI of the application->
 
   <a href="https://ibb.co/bdbKtZ1"><img align="left" width="225px" src="https://i.ibb.co/s3WV7Gj/Screenshot-20201004-014746.jpg" alt="Screenshot-20201004-014746" border="0"></a> 
-  <a href="https://ibb.co/Q8hJgSb"><img align="center" width="225px" src="https://i.ibb.co/1sB0gyv/live2.gif" alt="live2" border="0"></a>
+  <a href="https://ibb.co/Q8hJgSb"> <img align="   center" width="225px" src="https://i.ibb.co/1sB0gyv/live2.gif" alt="live2" border="0"></a>
   <a href="https://ibb.co/B69WC6t"><img align="right" width="225px" src="https://i.ibb.co/3Fn6CF7/home.jpg" alt="home" border="0"></a>
   
   
@@ -55,6 +55,11 @@ In the social distancing model we have used Facebook's detectron2 model for obje
   <a href="https://imgbb.com/"><img width="225px" src="https://i.ibb.co/sCZpZsk/face1.jpg" alt="face1" border="0"></a>
   
   <a href="https://imgbb.com/"><img width="225px" src="https://i.ibb.co/6sTsW3C/face2.jpg" alt="face2" border="0"></a>
+  
+  
+  c)Temperature Detection Using Thermal Integration
+  
+   This module is under progress... 
 
   
   
