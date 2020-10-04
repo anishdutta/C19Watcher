@@ -10,14 +10,14 @@ import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'package:firebase_database/firebase_database.dart';
 
 
-class Details extends StatefulWidget {
-  static String id = 'details';
+class LiveDetails extends StatefulWidget {
+  static String id = 'livedetails';
 
   @override
-  _DetailsState createState() => _DetailsState();
+  _LiveDetailsState createState() => _LiveDetailsState();
 }
 
-class _DetailsState extends State<Details> {
+class _LiveDetailsState extends State<LiveDetails> {
 
   void launchWhatsApp(
       {@required String phone,
@@ -25,11 +25,11 @@ class _DetailsState extends State<Details> {
       }) async {
     String url() {
       if (Platform.isIOS) {
-      return "whatsapp://wa.me/$phone/?text=${Uri.parse(message)}";
-    } else {
-      return "whatsapp://send?   phone=$phone&text=${Uri.parse(message)}";
+        return "whatsapp://wa.me/$phone/?text=${Uri.parse(message)}";
+      } else {
+        return "whatsapp://send?   phone=$phone&text=${Uri.parse(message)}";
+      }
     }
-  }
 
     if (await canLaunch(url())) {
       await launch(url());
@@ -106,7 +106,7 @@ class _DetailsState extends State<Details> {
 
   @override
   Widget build(BuildContext context) {
-    int currentTab = 3; // to keep track of active tab index
+    int currentTab = 4; // to keep track of active tab index
     final List<Widget> screens = [
       HomePage(),
       ProfilePage(),
@@ -299,15 +299,22 @@ class _DetailsState extends State<Details> {
 
 
                 SizedBox(
-                  height: 100,
+                  height: 50,
                 ),
-                Text(
-                  '$title',
-                  style: TextStyle(
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.w900,
-                      fontSize: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.location_on, color: Colors.redAccent),
+                    Text(
+                      '$title',
+                      style: TextStyle(
+                          color: Colors.deepPurpleAccent,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 20),
+                    ),
+                  ],
                 ),
+
                 SizedBox(
                   height: 20,
                 ),
@@ -315,55 +322,48 @@ class _DetailsState extends State<Details> {
                 Image.asset('assets/$alert',
                   width: 50,),
                 SizedBox(
-                  height: 50,
+                  height: 10,
                 ),
 
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(200.0),
                   child: Image.network(
                     '$url',
-                    height: 200.0,
-                    width: 200.0,
+                    height: 400.0,
+                    width: 400.0,
                   ),
                 ),
                 SizedBox(
-                  height: 100,
+                  height: 10,
                 ),
                 FutureBuilder(
-        future: dbRef.orderByChild("Name").equalTo("$title").once(),
-    builder: (context, AsyncSnapshot<DataSnapshot> snapshot){
-          if(snapshot.hasData){
-    lists.clear();
-    Map<dynamic, dynamic> values = snapshot.data.value;
-    values.forEach((key, values) {
-      lists.add(values);
-    });
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                FunctionalButton(
-                  title: 'Call',
-                  icon: Icons.phone_in_talk,
-                  onPressed: () {
-                    UrlLauncher.launch('tel:+${lists[0]["Phone"]}');
-                  },
-                ),
-                FunctionalButton(
-                  title: 'Whatsapp',
-                  icon: Icons.whatshot,
-                  onPressed: (){
-                    FlutterOpenWhatsapp.sendSingleMessage("${lists[0]["Phone"]}", "Hello $title You have been captured by the C19_Watcher for not wearing Face Mask/violating Social Distancing.\n If you are caught again,you are liable to further disciplinary actions.");
-                  },
-                ),
+                    future: dbRef.once(),
+                    builder: (context, AsyncSnapshot<DataSnapshot> snapshot){
+                      if(snapshot.hasData){
+                        lists.clear();
+                        Map<dynamic, dynamic> values = snapshot.data.value;
+                        values.forEach((key, values) {
+                          lists.add(values);
+                        });
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
 
-              ],
-            );
-          }
-          else{
-            return Text('loading..');
-          }
-    }
+                            FunctionalButton(
+                              title: 'Sent Alert',
+                              icon: Icons.warning,
+                              onPressed: (){
+                                // FlutterOpenWhatsapp.sendSingleMessage("${lists[0]["Phone"]}", "Hello $title You have been captured by the C19_Watcher for not wearing Face Mask/violating Social Distancing.\n If you are caught again,you are liable to further disciplinary actions.");
+                              },
+                            ),
+
+                          ],
+                        );
+                      }
+                      else{
+                        return Text('loading..');
+                      }
+                    }
 
                 ),
 
@@ -408,7 +408,7 @@ class _FunctionalButtonState extends State<FunctionalButton> {
             child: Icon(
               widget.icon,
               size: 50.0,
-              color: Colors.green,
+              color: Colors.red,
             ),
           ),
         ),
@@ -416,7 +416,7 @@ class _FunctionalButtonState extends State<FunctionalButton> {
           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
           child: Text(
             widget.title,
-            style: TextStyle(fontSize: 15.0, color: Colors.deepPurpleAccent),
+            style: TextStyle(fontSize: 20.0, color: Colors.red),
           ),
         )
       ],

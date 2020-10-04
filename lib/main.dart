@@ -7,6 +7,8 @@ import 'ui/Profile.dart';
 import 'ui/LiveWatcher.dart';
 import 'ui/Search.dart';
 import 'ui/Details.dart';
+import 'ui/Employers.dart';
+import 'ui/LiveWatcherDetails.dart';
 
 void main() {
   runApp(MyApp());
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
         ProfilePage.id: (context) => ProfilePage(),
         LiveWatcher.id: (context) => LiveWatcher(),
         MySearchPage.id: (context) => MySearchPage(),
-        Details.id: (context) => Details()
+        Details.id: (context) => Details(),
+        Employers.id: (context) =>  Employers(),
+        LiveDetails.id : (context) => LiveDetails()
       },
       home: FutureBuilder(
         future: getCurrentUser(),

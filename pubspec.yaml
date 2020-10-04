@@ -29,6 +29,10 @@ dependencies:
   carousel_slider: ^1.3.0
   contacts_service: ^0.3.10
   permission_handler: ^5.0.1+1
+  firebase_database: ^3.1.6
+  url_launcher: ^5.4.1
+  flutter_open_whatsapp: ^0.1.2
+
 
 
 
@@ -62,6 +66,7 @@ flutter:
     - assets/Group 1933.png
     - assets/Group 1932.png
     - assets/Group 1931.png
+    - assets/lycs-architecture-U2BI3GMnSSE-unsplash.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

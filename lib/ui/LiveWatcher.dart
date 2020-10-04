@@ -4,7 +4,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'Dashboard.dart';
 import 'package:page_transition/page_transition.dart';
 import 'Profile.dart';
-
+import 'package:firebase_database/firebase_database.dart';
+import 'LiveWatcherDetails.dart';
 
 class LiveWatcher extends StatefulWidget {
   static String id = 'LiveWatcher';
@@ -32,6 +33,8 @@ class _LiveWatcherState extends State<LiveWatcher> {
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = LiveWatcher();
+  final dbRef = FirebaseDatabase.instance.reference().child("SocialDistancing");
+  List<Map<dynamic, dynamic>> lists = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +71,18 @@ class _LiveWatcherState extends State<LiveWatcher> {
                   color: Colors.grey[800],
                   borderRadius: BorderRadius.circular(10)
               ),
-              child: Center(child: Text("0")),
+              child: FutureBuilder(
+                  future: dbRef.once(),
+    builder: (context, AsyncSnapshot<DataSnapshot> snapshot){
+                    if(snapshot.hasData){
+                      return Center(child: Text("${lists.length}"));
+                    }
+                    else{
+                      return Center(child: Text("."));
+                    }
+    }
+
+    ),
             ),
           )
         ],
@@ -220,10 +234,7 @@ class _LiveWatcherState extends State<LiveWatcher> {
                 height: 220,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/one.jpg'),
-                        fit: BoxFit.cover
-                    )
+
                 ),
                 child: ListView(
 
@@ -235,7 +246,7 @@ class _LiveWatcherState extends State<LiveWatcher> {
 
 
                     CarouselSlider(
-                      height: 180.0,
+                      height: 200.0,
 
 
                       enlargeCenterPage: true,
@@ -279,7 +290,7 @@ class _LiveWatcherState extends State<LiveWatcher> {
                             image: DecorationImage(
 
 
-                              image: AssetImage('assets/blog.jpg'),
+                              image: AssetImage('assets/lycs-architecture-U2BI3GMnSSE-unsplash.jpg'),
 
 
                               fit: BoxFit.cover,
@@ -306,7 +317,114 @@ class _LiveWatcherState extends State<LiveWatcher> {
                               Text(
 
 
-                                'LOCATION',
+                                'BASEMENT',
+
+
+                                style: TextStyle(
+
+
+                                  color: Colors.white,
+
+
+                                  fontWeight: FontWeight.bold,
+
+
+                                  fontSize: 18.0,
+
+
+                                ),
+
+
+                              ),
+
+
+
+                              Padding(
+
+
+                                padding: const EdgeInsets.all(15.0),
+
+
+                                child: Text(
+
+
+                                  'Lorem Ipsum is simply dummy text use for printing and type script',
+
+
+                                  style: TextStyle(
+
+
+                                    color: Colors.white,
+
+
+                                    fontSize: 15.0,
+
+
+                                  ),
+
+
+                                  textAlign: TextAlign.center,
+
+
+                                ),
+
+
+                              ),
+
+
+                            ],
+
+
+                          ),
+
+
+                        ),
+
+
+
+                        Container(
+
+
+                          margin: EdgeInsets.all(5.0),
+
+
+                          decoration: BoxDecoration(
+
+
+                            borderRadius: BorderRadius.circular(10.0),
+
+
+                            image: DecorationImage(
+
+
+                              image: AssetImage('assets/lycs-architecture-U2BI3GMnSSE-unsplash.jpg'),
+
+
+                              fit: BoxFit.cover,
+
+
+                            ),
+
+
+                          ),
+
+
+                          child: Column(
+
+
+                            mainAxisAlignment: MainAxisAlignment.center,
+
+
+                            crossAxisAlignment: CrossAxisAlignment.center,
+
+
+                            children: <Widget>[
+
+
+                              Text(
+
+
+                                'MEETING HALL',
 
 
                                 style: TextStyle(
@@ -413,114 +531,7 @@ class _LiveWatcherState extends State<LiveWatcher> {
                               Text(
 
 
-                                'LOCATION',
-
-
-                                style: TextStyle(
-
-
-                                  color: Colors.white,
-
-
-                                  fontWeight: FontWeight.bold,
-
-
-                                  fontSize: 18.0,
-
-
-                                ),
-
-
-                              ),
-
-
-
-                              Padding(
-
-
-                                padding: const EdgeInsets.all(15.0),
-
-
-                                child: Text(
-
-
-                                  'Lorem Ipsum is simply dummy text use for printing and type script',
-
-
-                                  style: TextStyle(
-
-
-                                    color: Colors.white,
-
-
-                                    fontSize: 15.0,
-
-
-                                  ),
-
-
-                                  textAlign: TextAlign.center,
-
-
-                                ),
-
-
-                              ),
-
-
-                            ],
-
-
-                          ),
-
-
-                        ),
-
-
-
-                        Container(
-
-
-                          margin: EdgeInsets.all(5.0),
-
-
-                          decoration: BoxDecoration(
-
-
-                            borderRadius: BorderRadius.circular(10.0),
-
-
-                            image: DecorationImage(
-
-
-                              image: AssetImage('assets/blog.jpg'),
-
-
-                              fit: BoxFit.cover,
-
-
-                            ),
-
-
-                          ),
-
-
-                          child: Column(
-
-
-                            mainAxisAlignment: MainAxisAlignment.center,
-
-
-                            crossAxisAlignment: CrossAxisAlignment.center,
-
-
-                            children: <Widget>[
-
-
-                              Text(
-
-
-                                'LOCATION',
+                                'CAFETERIA',
 
 
                                 style: TextStyle(
@@ -588,58 +599,87 @@ class _LiveWatcherState extends State<LiveWatcher> {
 
 
                     ),
-
+                    SizedBox(height: 15.0),
 
                   ],
 
 
                 ),
               ),
-              Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 10,
-                    mainAxisSpacing: 10,
-                    children: _listItem.map((item) => Card(
-                      color: Colors.transparent,
-                      elevation: 0,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            image: DecorationImage(
-                                image: AssetImage(item),
-                                fit: BoxFit.cover
-                            )
-                        ),
-                        child: Transform.translate(
-                          offset: Offset(30, 65),
-                          child: Container(
-                            margin: EdgeInsets.symmetric(horizontal: 5, vertical: 63),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
+              SizedBox(height: 15.0),
 
-                            ),
-                            child: Row(
+              FutureBuilder(
+                future: dbRef.once(),
+    builder: (context, AsyncSnapshot<DataSnapshot> snapshot) {
+      if (snapshot.hasData) {
+        lists.clear();
+        Map<dynamic, dynamic> values = snapshot.data.value;
+        values.forEach((key, values) {
+          lists.add(values);
+        });
+        return Expanded(
+            child: GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              shrinkWrap: true,
+              itemCount: lists.length,
+    itemBuilder: (BuildContext context, int index) {
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).pushNamed(
+          LiveDetails.id,
+          arguments: {
+            'title': 'Basement',
+            'url' :  '${lists[index]["ImageUrl"]}',
+            'alert': 'Group 1933.png'
+          },
+        );
+      },
+      child: Card(
+        color: Colors.transparent,
+        elevation: 0,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                  image: NetworkImage('${lists[index]["ImageUrl"]}'),
+                  fit: BoxFit.cover
+              )
+          ),
+          child: Transform.translate(
+            offset: Offset(70, 65),
+            child: Container(
+              margin: EdgeInsets.symmetric(horizontal: 5, vertical: 63),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
 
-                              children: <Widget>[
-                                Image.asset('assets/Group 1933.png',
-                                  width: 30,
-                                ),
-                                SizedBox(width: 10),
-                                Image.asset('assets/Group 1931.png',
-                                  width: 30,),
-                                SizedBox(width: 10),
+              ),
+              child: Row(
 
-                                Image.asset('assets/Group 1932.png',width: 30,),
+                children: <Widget>[
+                  Image.asset('assets/Group 1933.png',
+                    width: 30,
+                  ),
 
-                                // RatingBar(rating: items[index].rating),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    )).toList(),
-                  )
+                  // RatingBar(rating: items[index].rating),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    }
+
+            )
+        );
+      }
+      else{
+        return Text('Loading');
+      }
+    }
+
+
               )
             ],
           ),
