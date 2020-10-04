@@ -59,7 +59,9 @@ In the social distancing model we have used Facebook's detectron2 model for obje
   
   #### c)Temperature Detection Using Thermal Integration
   
-   This module is under progress... 
+   Temperature Detection model aims to use thermal imaging as a  means to calculate a person's Temperature and if it is more than normal temperature authorities will be alerted.
+   
+   This model is under progress....
 
   
   
