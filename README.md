@@ -27,17 +27,13 @@ This project is a starting point for a Flutter application.
 
 This is our UI of the application->
 
-  <a href="https://ibb.co/bdbKtZ1"><img width="225px" src="https://i.ibb.co/s3WV7Gj/Screenshot-20201004-014746.jpg" alt="Screenshot-20201004-014746" border="0"></a>
+  <a href="https://ibb.co/bdbKtZ1"><img align="center" width="225px" src="https://i.ibb.co/s3WV7Gj/Screenshot-20201004-014746.jpg" alt="Screenshot-20201004-014746" border="0"></a></br>
   
-  This is the login Page.
-  
-  <a href="https://ibb.co/3RNjp43"><img width="225px" src="https://i.ibb.co/5K8SrG0/Screenshot-20201004-014819.jpg" alt="Screenshot-20201004-014819" border="0"></a>
-  
-  This is our home Page.
+  <a href="https://ibb.co/3RNjp43"><img align="left" width="225px" src="https://i.ibb.co/5K8SrG0/Screenshot-20201004-014819.jpg" alt="Screenshot-20201004-014819" border="0"></a>   <a href="https://ibb.co/B69WC6t"><img align="right" width="225px" src="https://i.ibb.co/3Fn6CF7/home.jpg" alt="home" border="0"></a>
   
   This page is for the live interface of the camera.
   
-  <a href="https://ibb.co/YTG33XS"><img width="225px" src="https://i.ibb.co/vv8HHhW/Screenshot-20201004-014827.jpg" alt="Screenshot-20201004-014827" border="0"></a>
+
   
   
  ## Deep Learning/Machine Learning 
