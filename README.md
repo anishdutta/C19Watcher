@@ -38,7 +38,7 @@ This is our UI of the application->
   
   
  ## Deep Learning/Machine Learning 
-  a)Social Distancing Model
+  #a)Social Distancing Model
   
 In the social distancing model we have used Facebook's detectron2 model for object detection and localization, this gives us a bounding box around all the people in the frame and then we used the scipys spatial model for calculating the distance between all the people out of which the minimum distance is taken and if that is less than the threshold an alert is sent to the database.
 
@@ -48,7 +48,7 @@ In the social distancing model we have used Facebook's detectron2 model for obje
   
   
   
- b)Face Recognition and Face Mask detection
+ #b)Face Recognition and Face Mask detection
  
  The second and third model are integrated together so the model returns the persons name who is not wearing a mask along with his photo, for face mask detection we have used mobilenet's model for object classification and using opencv we are creating a bounding box around the face. And for face recognition we used adam geitgeys face recognition module.
   
@@ -57,7 +57,7 @@ In the social distancing model we have used Facebook's detectron2 model for obje
   <a href="https://imgbb.com/"><img width="225px" src="https://i.ibb.co/6sTsW3C/face2.jpg" alt="face2" border="0"></a>
   
   
-  c)Temperature Detection Using Thermal Integration
+  #c)Temperature Detection Using Thermal Integration
   
    This module is under progress... 
 
